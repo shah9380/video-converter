@@ -61,10 +61,10 @@ cron.schedule('*/5 * * * *', () => {
     uploadedFiles = [];
 });
 
-app.use(express.static(path.join(__dirname, "../client-1/build")))
+app.use(express.static(path.join(__dirname, "../client/build")))
 
 app.get('*', (req, res)=>{
-    res.sendFile(path.join(__dirname, "../client-1/build", "index.html"));
+    res.sendFile(path.join(__dirname, "../client/build", "index.html"));
 })
 
 app.listen(5000, () => console.log('Server running on http://localhost:5000'));
