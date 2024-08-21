@@ -3,10 +3,10 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const cron = require('node-cron');
-const cors = require('cors');
+// const cors = require('cors');
 
 const app = express();
-app.use(cors()); // Enable CORS for frontend communication
+// app.use(cors()); // Enable CORS for frontend communication
 app.use(express.static('uploads')); // Serve static files from the uploads directory
 
 // Custom storage configuration for multer to preserve original file names and extensions
@@ -40,7 +40,7 @@ app.post('/upload', upload.array('files'), (req, res) => {
 });
 
 app.get('/files', (req, res) => {
-    res.json(uploadedFiles);
+    res.json({hello: "I am misbah"});
 });
 
 // Cron job to clear the uploads folder every 5 minutes
