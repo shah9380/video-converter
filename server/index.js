@@ -40,9 +40,14 @@ app.post('/upload', upload.array('files'), (req, res) => {
     res.json({ message: 'Files uploaded successfully!', files: uploadedFiles });
 });
 
+app.get('/check', (req, res) => {
+
+    res.json({hello: "Hi Misbah Welcome back"});
+});
+
 app.post('/files', (req, res) => {
     console.log(req.body);
-    
+
     res.json({hello: "I am misbah", datawegot: req?.body});
 });
 
