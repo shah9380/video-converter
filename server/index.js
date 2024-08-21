@@ -4,11 +4,13 @@ const path = require('path');
 const fs = require('fs');
 const cron = require('node-cron');
 // const cors = require('cors');
+const cookieParser = require("cookie-parser");
 
 const app = express();
 // app.use(cors()); // Enable CORS for frontend communication
 app.use(express.static('uploads')); // Serve static files from the uploads directory
 app.use(express.json());
+app.use(cookieParser());
 
 // Custom storage configuration for multer to preserve original file names and extensions
 const storage = multer.diskStorage({
@@ -41,14 +43,14 @@ app.post('/upload', upload.array('files'), (req, res) => {
 });
 
 app.get('/check', (req, res) => {
-
-    res.json({hello: "Hi Misbah Welcome back"});
+    res.cookie('cookieName', 'I am from cookie means cookie value');
+    res.json({hello: "Hi Misbah Welcome back", cookies: req?.cookies});
 });
 
 app.post('/files', (req, res) => {
     console.log(req.body);
 
-    res.json({hello: "I am misbah", datawegot: req?.body});
+    res.json({hello: "I am misbah", datawegot: req?.body, cookies: req?.cookies});
 });
 
 // Cron job to clear the uploads folder every 5 minutes
